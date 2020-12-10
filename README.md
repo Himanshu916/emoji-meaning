@@ -1,2 +1,2 @@
 # emoji-meaning
-Created with CodeSandbox
+this app will give you the meaning of the emoji you choose
