@@ -13,14 +13,22 @@ var emojis = Object.keys(emojidictionary);
 
 export default function App() {
   var [userInput, setUserInput] = useState("");
+  const [meaning, setMeaning] = useState("translation will appear here..");
   function inputChangeHandler(e) {
-    var meaning = e.target.value;
-    setUserInput(meaning);
+    userInput = e.target.value;
+    setUserInput(userInput);
+
+    if (userInput in emojidictionary) {
+      setMeaning(emojidictionary[userInput]);
+    } else {
+      setMeaning("failure to recognise this emoji");
+    }
   }
 
   function clickHandler(emoji) {
-    var meaning = emojidictionary[emoji];
-    setUserInput(meaning);
+    var meaning = "";
+    setMeaning(meaning);
+    setUserInput(emojidictionary[emoji]);
   }
   function getEmoji() {
     return emojis.map((emoji) => {
@@ -51,6 +59,7 @@ export default function App() {
       ></input>
 
       <h2>{userInput}</h2>
+      <h3>{meaning}</h3>
       {getEmoji()}
     </div>
   );
